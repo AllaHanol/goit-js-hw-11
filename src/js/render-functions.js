@@ -3,32 +3,43 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-function imageTemplate ({webformatURL, largeImageURL,tags,likes,views,comments,downloads}){
-    return `<li class="gallery-item">
-    <a class="gallery-link" href="${original}">
-      <img
-        class="gallery-image"
-        src="${preview}"
-        alt="${description}"
-        title="${description}"
-      />
-    </a>
-  </li>`;
 
+export function renderPhotos(photos, domElem) {
+    const markup = photos
+      .map(
+        ({
+          largeImageURL,
+          webformatURL,
+          likes,
+          comments,
+          views,
+          downloads,
+          tags,
+        }) => {
+          return `<li class="gallery-item">
+              <a class="link-card" href="${largeImageURL}">
+                  <img class="image-card" src="${webformatURL}" alt="${tags}"/></a>
+                  <ul class="info-list">
+                      <li class="info-item">
+                          <h3 class="info-title">Likes</h3>
+                          <p>${likes}</p>
+                      </li>
+                      <li class="info-item">
+                          <h3 class="info-title">Views</h3>
+                          <p>${views}</p>
+                      </li>
+                      <li class="info-item">
+                          <h3 class="info-title">Comments</h3>
+                          <p>${comments}</p>
+                      </li>
+                      <li class="info-item">
+                          <h3 class="info-title">Downloads</h3>
+                          <p>${downloads}</p>
+                      </li>
+                  </ul>
+          </li>`;
+        }
+      )
+      .join('');
+    domElem.innerHTML = markup;
   }
-
-
-// let gallery = new SimpleLightbox('.gallery a');
-// gallery.on('show.simplelightbox', function () {
-// 	// Do something…
-// });
-
-// gallery.on('error.simplelightbox', function (e) {
-// 	console.log(e); // Some usefull information
-// });
-
-// // with jQuery nearly the same
-// let gallery = $('.gallery a').simpleLightbox();
-// gallery.on('show.simplelightbox', function () {
-// 	// Do something…
-// });

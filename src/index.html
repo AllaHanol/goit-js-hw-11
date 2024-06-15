@@ -14,20 +14,20 @@
     <header></header>
     <main>
         <section>
-            <div class="container">
-                <form action="">
-                    <input type="text">
-                    <button class="btn" type="submit">SEARCH</button>
+            <div class="container form-box">
+                <form class="form-box" action="">
+                  <input
+                    class="search-input"
+                    type="text"
+                    name="search"
+                    placeholder="Search images..."
+                  /><button class="search-btn" type="submit">search</button>
                 </form>
-               
-            </div>
-        </section>
-        <section>
-            <div>
-                <ul class="gallery">
-              
-                </ul>  
-            </div>
+              </div>
+              <div class="loader"></div>
+              <div class="container gallery-box">
+                <ul class="gallery"></ul>
+              </div>
         </section>
         
     </main>
